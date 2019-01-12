@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCServer", "MVCServer\MVCServer.csproj", "{4F6FA90B-C84E-4A16-BF89-F8549964A85A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "MVCServer\Data.csproj", "{4F6FA90B-C84E-4A16-BF89-F8549964A85A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{6C4343B0-0FB4-446C-B360-806C55FF8648}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Access", "Access\Access.csproj", "{21C33D69-8270-4C92-9740-B1224BE5460A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{4F6FA90B-C84E-4A16-BF89-F8549964A85A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F6FA90B-C84E-4A16-BF89-F8549964A85A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F6FA90B-C84E-4A16-BF89-F8549964A85A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C4343B0-0FB4-446C-B360-806C55FF8648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C4343B0-0FB4-446C-B360-806C55FF8648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C4343B0-0FB4-446C-B360-806C55FF8648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C4343B0-0FB4-446C-B360-806C55FF8648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21C33D69-8270-4C92-9740-B1224BE5460A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21C33D69-8270-4C92-9740-B1224BE5460A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21C33D69-8270-4C92-9740-B1224BE5460A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21C33D69-8270-4C92-9740-B1224BE5460A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
