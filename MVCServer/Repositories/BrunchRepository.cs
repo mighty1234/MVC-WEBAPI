@@ -16,17 +16,19 @@ namespace MVCServer.Repositories
 
         public Brunch FindById(int id)
         {
-            return _db.Find(id);
+          return  _db.Where(x => x.Id == id).Include(x => x.Orders).First();
         }
 
         public IEnumerable<Brunch> GetAll()
         {
-            return _db.ToList(); 
+            return _db.Include(x=>x.Orders); 
         }
 
         public void Remove(Brunch item)
         {
             _db.Remove(item);
         }
+
+       
     }
 }

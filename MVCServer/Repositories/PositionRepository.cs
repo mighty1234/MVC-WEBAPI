@@ -16,17 +16,18 @@ namespace MVCServer.Repositories
 
         public Position FindById(int id)
         {
-            return _db.Find(id);
+            return _db.Include(x => x.Staff).Where(x => x.Id == id).First();
         }
 
         public IEnumerable<Position> GetAll()
         {
-            return _db.ToList();
+            return _db.Include(y=>y.Staff);
         }
 
         public void Remove(Position item)
         {
             _db.Remove(item);
         }
+       
     }
 }

@@ -16,17 +16,22 @@ namespace MVCServer.Repositories
 
         public Gifts FindById(int id)
         {
-            return _db.Find(id);
+           return _db.Where(x => x.Id == id).Include(x => x.Orders).First();
         }
 
         public IEnumerable<Gifts> GetAll()
         {
-            return _db.ToList();
+            return _db.Include(X=>X.Orders);
         }
 
         public void Remove(Gifts item)
         {
             _db.Remove(item);
+        }
+
+        public void Update(Gifts item, DbContext context)
+        {
+            context.Entry(item).State = EntityState.Modified;
         }
     }
 }

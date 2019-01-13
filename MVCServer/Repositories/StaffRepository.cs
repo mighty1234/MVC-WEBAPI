@@ -16,17 +16,22 @@ namespace MVCServer.Repositories
 
         public Staff FindById(int id)
         {
-            return _db.Find(id);
+            return _db.Include(y => y.Brunch).Include(y => y.Position).Include(y => y.Orders).Where(x => x.Id == id).First();
         }
 
         public IEnumerable<Staff> GetAll()
         {
-            return _db.ToList();
+            return _db.Include(y => y.Brunch).Include(y => y.Position).Include(y => y.Orders);
         }
 
         public void Remove(Staff item)
         {
             _db.Remove(item);
+        }
+
+        public void Update(Staff item, DbContext context)
+        {
+            context.Entry(item).State = EntityState.Modified;
         }
     }
 }

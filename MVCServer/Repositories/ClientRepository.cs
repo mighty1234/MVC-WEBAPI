@@ -16,17 +16,20 @@ namespace MVCServer.Repositories
 
         public Client FindById(int id)
         {
-            return   _db.Find(id);
+          return _db.Where(x=>x.Id==id).Include(x=>x.Orders).First();          
+          
+          
         }
 
         public IEnumerable<Client> GetAll()
         {
-            return _db.ToList();
+            return _db.Include(x=>x.Orders);
         }
 
         public void Remove(Client item)
         {
             _db.Remove(item);
         }
+
     }
 }

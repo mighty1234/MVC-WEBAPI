@@ -16,7 +16,7 @@ namespace MVCServer.UnitOfWork
         public OrdersRepository ordersRepository;
         public GiftsRepository giftsRepository;
         public ClientRepository clientRepository;
-            
+
         private bool disposed = false;
         private MVCEntities _context = new MVCEntities();
         public void Dispose()
@@ -24,6 +24,8 @@ namespace MVCServer.UnitOfWork
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+       
 
         public virtual void Dispose(bool disposing)
         {
@@ -36,6 +38,8 @@ namespace MVCServer.UnitOfWork
                 this.disposed = true;
             }
         }
+        
+           
 
         public void Save()
         {
