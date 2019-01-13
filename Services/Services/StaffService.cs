@@ -17,10 +17,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.staffRepository.Remove(entity);
+                    unit.Staff.Remove(entity);
                     unit.Save();
 
                 }
@@ -36,10 +36,10 @@ namespace Services.Services
     {
             try
             {
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.staffRepository.GetAll();
+                    return unit.Staff.GetAll();
 
                 }
             }
@@ -57,10 +57,10 @@ namespace Services.Services
                 if (id == default(int))
                     throw new NullReferenceException(nameof(id));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.staffRepository.FindById(id);
+                    return unit.Staff.FindById(id);
 
                 }
             }
@@ -77,10 +77,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.staffRepository.Add(entity);
+                    unit.Staff.Add(entity);
                     unit.Save();
                 }
             }
@@ -96,10 +96,10 @@ namespace Services.Services
             try
             {
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.staffRepository.Add(entity);
+                    unit.Staff.Add(entity);
                     unit.Save();
 
                 }

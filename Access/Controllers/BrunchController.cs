@@ -1,10 +1,12 @@
-﻿using Model;
+﻿
+using MVCServer;
 using Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web.Helpers;
 using System.Web.Http;
 
 namespace Access.Controllers
@@ -13,9 +15,11 @@ namespace Access.Controllers
     {
         BrunchService service = new BrunchService();
         // GET: api/Brunch
-        public IEnumerable<MVCServer.Brunch> Get()
+        public IEnumerable<Brunch> Get()
         {
-            return service.GetAll();
+            var x = (List<Brunch>)service.GetAll();
+
+            return x;
         }
 
         // GET: api/Brunch/5

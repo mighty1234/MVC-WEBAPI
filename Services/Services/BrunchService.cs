@@ -10,7 +10,6 @@ namespace Services.Services
 
     public class BrunchService : IService<Brunch>
     {
-        private UnitOfWork unit = new UnitOfWork();
         public void Delete(Brunch entity)
         {
             try
@@ -18,10 +17,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork()) 
                 {
 
-                    unit.brunchRepository.Remove(entity);
+                    unit.Brunches.Remove(entity);
                     unit.Save();
 
                 }
@@ -40,10 +39,10 @@ namespace Services.Services
 
             try
             {
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                   x= unit.brunchRepository.GetAll();
+                   x= unit.Brunches.GetAll();
 
                 }
             }
@@ -63,10 +62,10 @@ namespace Services.Services
                 if (id == default(int))
                     throw new NullReferenceException(nameof(id));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.brunchRepository.FindById(id);
+                    return unit.Brunches.FindById(id);
 
                 }
             }
@@ -83,10 +82,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.brunchRepository.Add(entity);
+                    unit.Brunches.Add(entity);
                     unit.Save();
                 }
             }
@@ -102,10 +101,10 @@ namespace Services.Services
             try
             {
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.brunchRepository.Add(entity);
+                    unit.Brunches.Add(entity);
                     unit.Save();
 
                 }

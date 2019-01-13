@@ -9,7 +9,7 @@ namespace Services.Services
 {
     public class GiftsService : IService<Gifts>
     {
-        private UnitOfWork unit = new UnitOfWork();
+      
         public void Delete(Gifts entity)
         {
 
@@ -18,10 +18,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.giftsRepository.Remove(entity);
+                    unit.Gifts.Remove(entity);
                     unit.Save();
 
                 }
@@ -37,10 +37,10 @@ namespace Services.Services
         {
             try
             {
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.giftsRepository.GetAll();
+                    return unit.Gifts.GetAll();
 
                 }
             }
@@ -58,10 +58,10 @@ namespace Services.Services
                 if (id == default(int))
                     throw new NullReferenceException(nameof(id));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.giftsRepository.FindById(id);
+                    return unit.Gifts.FindById(id);
 
                 }
             }
@@ -78,10 +78,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.giftsRepository.Add(entity);
+                    unit.Gifts.Add(entity);
                     unit.Save();
                 }
             }
@@ -97,10 +97,10 @@ namespace Services.Services
             try
             {
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.giftsRepository.Add(entity);
+                    unit.Gifts.Add(entity);
                     unit.Save();
 
                 }

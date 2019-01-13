@@ -27,7 +27,7 @@ namespace MVCServer.Repositories
 
         public IEnumerable<Brunch> GetAll()
         {
-            return _db.Include(x=>x.Orders); 
+            return _db.Include(x=>x.Orders).Include(x=>x.Staff).ToList(); 
         }
 
         public void Remove(Brunch item)

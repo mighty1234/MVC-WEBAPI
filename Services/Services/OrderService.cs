@@ -8,8 +8,7 @@ using System.Web;
 namespace Services.Services
 {
     public class OrderService : IService<Orders>
-    {
-        private UnitOfWork unit = new UnitOfWork();
+    { 
         public void Delete(Orders entity)
         {
             try
@@ -17,10 +16,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.ordersRepository.Remove(entity);
+                    unit.Orders.Remove(entity);
                     unit.Save();
 
                 }
@@ -35,12 +34,16 @@ namespace Services.Services
         public IEnumerable<Orders> GetAll()
         {
 
-            try {
-                var values= unit.ordersRepository.GetAll();
-                if (values==null)
-                    throw new ArgumentNullException(nameof(Orders));
-                return values;
+            IEnumerable<Orders> x = new List<Orders>();
 
+            try {
+                using (UnitOfWork unit = new UnitOfWork())
+                {
+                    x = unit.Orders.GetAll();
+                    if (x == null)
+                        throw new ArgumentNullException(nameof(Orders));
+                   return x;
+                }
 
             }
             catch (Exception ex)
@@ -58,10 +61,10 @@ namespace Services.Services
                 if (id == default(int))
                     throw new NullReferenceException(nameof(id));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.ordersRepository.FindById(id);
+                    return unit.Orders.FindById(id);
 
                 }
             }
@@ -78,10 +81,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.ordersRepository.Add(entity);
+                    unit.Orders.Add(entity);
                     unit.Save();
                 }
             }
@@ -97,10 +100,10 @@ namespace Services.Services
             try
             {
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.ordersRepository.Add(entity);
+                    unit.Orders.Add(entity);
                     unit.Save();
 
                 }

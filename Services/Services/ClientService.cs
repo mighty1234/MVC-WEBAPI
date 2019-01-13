@@ -9,7 +9,7 @@ namespace Services.Services
 {
     public class ClientService : IService<Client>
     {
-        private UnitOfWork unit = new UnitOfWork();
+       
         public void Delete(Client entity)
         {
             try
@@ -17,10 +17,10 @@ namespace Services.Services
                 if(entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.clientRepository.Remove(entity);
+                    unit.Clients.Remove(entity);
                     unit.Save();
 
                 }
@@ -39,10 +39,10 @@ namespace Services.Services
         {
             try
             {
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.clientRepository.GetAll();
+                    return unit.Clients.GetAll();
 
                 }
             }
@@ -62,10 +62,10 @@ namespace Services.Services
                 if(id==default(int))
                     throw new NullReferenceException(nameof(id));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.clientRepository.FindById(id);
+                    return unit.Clients.FindById(id);
 
                 }
             }
@@ -78,10 +78,7 @@ namespace Services.Services
 
         }
 
-        //public IEnumerable<Client> GetByprop()
-        //{
-        //    throw new NotImplementedException();
-        //}
+       
 
         public void Save(Client entity)
         {
@@ -90,10 +87,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.clientRepository.Add(entity);
+                    unit.Clients.Add(entity);
                     unit.Save();
                 }
             }
@@ -110,10 +107,10 @@ namespace Services.Services
             try
             {
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.clientRepository.Add(entity);
+                    unit.Clients.Add(entity);
                     unit.Save();
 
                 }

@@ -10,34 +10,74 @@ namespace MVCServer.UnitOfWork
     public class UnitOfWork : IUnitOfWork
 
     {
-        private static MVCEntities _context = new MVCEntities();
-        public BrunchRepository brunchRepository= new BrunchRepository(_context);
-        public StaffRepository staffRepository= new StaffRepository(_context);
-        public PositionRepository positionRepository = new PositionRepository(_context);
-        public OrdersRepository ordersRepository = new OrdersRepository(_context);
-        public GiftsRepository giftsRepository = new GiftsRepository(_context);
-        public ClientRepository clientRepository = new ClientRepository(_context);
+        private MVCEntities _context = new MVCEntities();
+        public BrunchRepository brunchRepository;
+        public StaffRepository staffRepository;
+        public PositionRepository positionRepository ;
+        public OrdersRepository ordersRepository ;
+        public GiftsRepository giftsRepository ;
+        public ClientRepository clientRepository ;
 
-        //private bool disposed = false;
-       
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
 
-       
+        public BrunchRepository Brunches
+        {
+            get {
+                if (brunchRepository == null)
+                    brunchRepository = new BrunchRepository(_context);
+                return brunchRepository;
+            }
+        }
+        public StaffRepository Staff
+        {
+            get
+            {
+                if (staffRepository == null)
+                    staffRepository = new StaffRepository(_context);
+                return staffRepository;
+            }
+        }
+        public ClientRepository Clients
+        {
+            get
+            {
+                if (clientRepository == null)
+                   clientRepository = new ClientRepository(_context);
+                return clientRepository;
+            }
+        }
+
+        public GiftsRepository Gifts
+        {
+            get
+            {
+                if (giftsRepository == null)
+                   giftsRepository = new GiftsRepository(_context);
+                return giftsRepository;
+            }
+        }
+
+        public OrdersRepository Orders
+        {
+            get
+            {
+                if (ordersRepository == null)
+                   ordersRepository = new OrdersRepository(_context);
+                return ordersRepository;
+            }
+        }
+        public PositionRepository Positions
+        {
+            get
+            {
+                if (positionRepository == null)
+                    positionRepository = new PositionRepository(_context);
+                return positionRepository;
+            }
+        }   
 
         public virtual void Dispose()
         {
-            //if (!this.disposed)
-            //{
-            //    if (disposing)
-            //    {
-            //        _context.Dispose();
-            //    }
-            //    this.disposed = true;
-            //}
+           
             if (_context != null)
             {
                 _context.Dispose();

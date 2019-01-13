@@ -9,7 +9,7 @@ namespace Services.Services
 {
     public class PositionService : IService<Position>
     {
-        private UnitOfWork unit = new UnitOfWork();
+       
         public void Delete(Position entity)
         {
             try
@@ -17,10 +17,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.positionRepository.Remove(entity);
+                    unit.Positions.Remove(entity);
                     unit.Save();
 
                 }
@@ -39,10 +39,10 @@ namespace Services.Services
         {
                 try
                 {
-                    using (unit)
+                    using (UnitOfWork unit = new UnitOfWork())
                     {
 
-                        return unit.positionRepository.GetAll();
+                        return unit.Positions.GetAll();
 
                     }
                 }
@@ -60,10 +60,10 @@ namespace Services.Services
                 if (id == default(int))
                     throw new NullReferenceException(nameof(id));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.positionRepository.FindById(id);
+                    return unit.Positions.FindById(id);
 
                 }
             }
@@ -80,10 +80,10 @@ namespace Services.Services
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.positionRepository.Add(entity);
+                    unit.Positions.Add(entity);
                     unit.Save();
                 }
             }
@@ -99,10 +99,10 @@ namespace Services.Services
             try
             {
 
-                using (unit)
+                using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.positionRepository.Add(entity);
+                    unit.Positions.Add(entity);
                     unit.Save();
 
                 }

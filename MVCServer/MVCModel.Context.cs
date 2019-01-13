@@ -18,6 +18,7 @@ namespace MVCServer
         public MVCEntities()
             : base("name=MVCEntities")
         {
+           
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
