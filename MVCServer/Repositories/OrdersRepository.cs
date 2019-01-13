@@ -9,6 +9,10 @@ namespace MVCServer.Repositories
     public class OrdersRepository : IRepository<Orders>
     {
         private DbSet<Orders> _db;
+        public OrdersRepository(MVCEntities context)
+        {
+            this._db = context.Orders;
+        }
         public void Add(Orders item)
         {
             _db.Add(item);

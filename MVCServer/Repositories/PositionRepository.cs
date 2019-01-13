@@ -9,6 +9,11 @@ namespace MVCServer.Repositories
     public class PositionRepository : IRepository<Position>
     {
         private DbSet<Position> _db;
+
+        public PositionRepository(MVCEntities context)
+        {
+            this._db = context.Position;
+        }
         public void Add(Position item)
         {
             _db.Add(item);

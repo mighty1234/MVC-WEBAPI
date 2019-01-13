@@ -10,32 +10,38 @@ namespace MVCServer.UnitOfWork
     public class UnitOfWork : IUnitOfWork
 
     {
-        public BrunchRepository brunchRepository;
-        public StaffRepository staffRepository;
-        public PositionRepository positionRepository;
-        public OrdersRepository ordersRepository;
-        public GiftsRepository giftsRepository;
-        public ClientRepository clientRepository;
+        private static MVCEntities _context = new MVCEntities();
+        public BrunchRepository brunchRepository= new BrunchRepository(_context);
+        public StaffRepository staffRepository= new StaffRepository(_context);
+        public PositionRepository positionRepository = new PositionRepository(_context);
+        public OrdersRepository ordersRepository = new OrdersRepository(_context);
+        public GiftsRepository giftsRepository = new GiftsRepository(_context);
+        public ClientRepository clientRepository = new ClientRepository(_context);
 
-        private bool disposed = false;
-        private MVCEntities _context = new MVCEntities();
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        //private bool disposed = false;
+       
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
 
        
 
-        public virtual void Dispose(bool disposing)
+        public virtual void Dispose()
         {
-            if (!this.disposed)
+            //if (!this.disposed)
+            //{
+            //    if (disposing)
+            //    {
+            //        _context.Dispose();
+            //    }
+            //    this.disposed = true;
+            //}
+            if (_context != null)
             {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-                this.disposed = true;
+                _context.Dispose();
+                _context = null;
             }
         }
         

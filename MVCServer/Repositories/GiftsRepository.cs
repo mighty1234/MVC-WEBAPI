@@ -9,6 +9,10 @@ namespace MVCServer.Repositories
     public class GiftsRepository : IRepository<Gifts>
     {
         private DbSet<Gifts> _db;
+        public GiftsRepository(MVCEntities context)
+        {
+            this._db = context.Gifts;
+        }
         public void Add(Gifts item)
         {
             _db.Add(item);

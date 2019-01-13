@@ -9,6 +9,12 @@ namespace MVCServer.Repositories
     public class BrunchRepository : IRepository<Brunch>
     {
        private  DbSet<Brunch> _db;
+        public BrunchRepository(MVCEntities context)
+        {
+           this._db = context.Brunch;
+        }
+
+
         public void Add(Brunch item)
         {
             _db.Add(item);

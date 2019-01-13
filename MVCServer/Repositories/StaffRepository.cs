@@ -9,6 +9,10 @@ namespace MVCServer.Repositories
     public class StaffRepository : IRepository<Staff>
     {
         private DbSet<Staff> _db;
+        public StaffRepository(MVCEntities context)
+        {
+            this._db = context.Staff;
+        }
         public void Add(Staff item)
         {
             _db.Add(item);

@@ -36,12 +36,14 @@ namespace Services.Services
 
         public IEnumerable<Brunch> GetAll()
         {
+           IEnumerable<Brunch> x = new  List<Brunch>();
+
             try
             {
                 using (unit)
                 {
 
-                    return unit.brunchRepository.GetAll();
+                   x= unit.brunchRepository.GetAll();
 
                 }
             }
@@ -50,6 +52,7 @@ namespace Services.Services
             {
                 throw ex;
             }
+            return x;
 
         }
 

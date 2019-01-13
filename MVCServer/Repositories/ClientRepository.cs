@@ -9,6 +9,10 @@ namespace MVCServer.Repositories
     public class ClientRepository : IRepository<Client>
     {
         private DbSet<Client> _db;
+        public ClientRepository(MVCEntities context)
+        {
+            this._db = context.Client;
+        }
         public void Add(Client item)
         {
             _db.Add(item);
