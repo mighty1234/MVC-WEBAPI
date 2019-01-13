@@ -187,6 +187,7 @@
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PositionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

@@ -7,10 +7,10 @@ using System.Web;
 
 namespace Services.Services
 {
-    public class OrderService : IService<Orders>
+    public class PositionService : IService<Position>
     {
         private UnitOfWork unit = new UnitOfWork();
-        public void Delete(Orders entity)
+        public void Delete(Position entity)
         {
             try
             {
@@ -20,38 +20,40 @@ namespace Services.Services
                 using (unit)
                 {
 
-                    unit.ordersRepository.Remove(entity);
+                    unit.positionRepository.Remove(entity);
                     unit.Save();
 
                 }
 
             }
+
             catch (Exception ex)
             {
                 throw ex;
+
             }
         }
 
-        public IEnumerable<Orders> GetAll()
+
+    public IEnumerable<Position> GetAll()
         {
+                try
+                {
+                    using (unit)
+                    {
 
-            try {
-                var values= unit.ordersRepository.GetAll();
-                if (values==null)
-                    throw new ArgumentNullException(nameof(Orders));
-                return values;
+                        return unit.positionRepository.GetAll();
 
+                    }
+                }
 
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        
-      
-        }
 
-        public Orders GetBuyId(int id)
+        public Position GetBuyId(int id)
         {
             try
             {
@@ -61,7 +63,7 @@ namespace Services.Services
                 using (unit)
                 {
 
-                    return unit.ordersRepository.FindById(id);
+                    return unit.positionRepository.FindById(id);
 
                 }
             }
@@ -71,7 +73,7 @@ namespace Services.Services
             }
         }
 
-        public void Save(Orders entity)
+        public void Save(Position entity)
         {
             try
             {
@@ -81,7 +83,7 @@ namespace Services.Services
                 using (unit)
                 {
 
-                    unit.ordersRepository.Add(entity);
+                    unit.positionRepository.Add(entity);
                     unit.Save();
                 }
             }
@@ -92,7 +94,7 @@ namespace Services.Services
             }
         }
 
-        public void Update(Orders entity)
+        public void Update(Position entity)
         {
             try
             {
@@ -100,7 +102,7 @@ namespace Services.Services
                 using (unit)
                 {
 
-                    unit.ordersRepository.Add(entity);
+                    unit.positionRepository.Add(entity);
                     unit.Save();
 
                 }
