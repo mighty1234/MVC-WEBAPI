@@ -9,17 +9,17 @@ namespace Services.Services
 {
     public class OrderService : IService<Orders>
     { 
-        public void Delete(Orders entity)
+        public void Delete(int id)
         {
             try
             {
-                if (entity == null)
-                    throw new ArgumentNullException(nameof(entity));
+                if (id == 0)
+                    throw new ArgumentNullException(nameof(id));
 
                 using (UnitOfWork unit = new UnitOfWork())
                 {
-
-                    unit.Orders.Remove(entity);
+                    var order = unit.Orders.FindById(id);
+                    unit.Orders.Remove(order);
                     unit.Save();
 
                 }

@@ -10,18 +10,18 @@ namespace Services.Services
     public class GiftsService : IService<Gifts>
     {
       
-        public void Delete(Gifts entity)
+        public void Delete(int id )
         {
 
             try
             {
-                if (entity == null)
-                    throw new ArgumentNullException(nameof(entity));
+                if (id == 0)
+                    throw new ArgumentNullException(nameof(id));
 
                 using (UnitOfWork unit = new UnitOfWork())
                 {
-
-                    unit.Gifts.Remove(entity);
+                    var gift = unit.Gifts.FindById(id);
+                    unit.Gifts.Remove(gift);
                     unit.Save();
 
                 }

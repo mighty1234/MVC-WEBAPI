@@ -10,17 +10,17 @@ namespace Services.Services
 
     public class BrunchService : IService<Brunch>
     {
-        public void Delete(Brunch entity)
+        public void Delete(int id)
         {
             try
             {
-                if (entity == null)
-                    throw new ArgumentNullException(nameof(entity));
+                if (id ==0)
+                    throw new ArgumentNullException(nameof(id));
 
                 using (UnitOfWork unit = new UnitOfWork()) 
                 {
-
-                    unit.Brunches.Remove(entity);
+                    var item =unit.Brunches.FindById(id);
+                    unit.Brunches.Remove(item);
                     unit.Save();
 
                 }

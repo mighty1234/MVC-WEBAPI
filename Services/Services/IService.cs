@@ -11,7 +11,7 @@ namespace Services.Services
         IEnumerable<TEntity> GetAll();
        TEntity GetBuyId(int id);
         void Save(TEntity entity);
-        void Delete(TEntity entity);
+        void Delete(int id);
         void Update(TEntity entity);
       //  IEnumerable<TEntity> GetByprop ();
 

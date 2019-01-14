@@ -10,17 +10,17 @@ namespace Services.Services
     public class ClientService : IService<Client>
     {
        
-        public void Delete(Client entity)
+        public void Delete(int id)
         {
             try
             {
-                if(entity == null)
-                    throw new ArgumentNullException(nameof(entity));
+                if(id == 0)
+                    throw new ArgumentNullException(nameof(id));
 
                 using (UnitOfWork unit = new UnitOfWork())
                 {
-
-                    unit.Clients.Remove(entity);
+                     var client= unit.Clients.FindById(id);
+                    unit.Clients.Remove(client);
                     unit.Save();
 
                 }

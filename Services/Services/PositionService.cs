@@ -10,17 +10,17 @@ namespace Services.Services
     public class PositionService : IService<Position>
     {
        
-        public void Delete(Position entity)
+        public void Delete(int id )
         {
             try
             {
-                if (entity == null)
-                    throw new ArgumentNullException(nameof(entity));
+                if (id == 0)
+                    throw new ArgumentNullException(nameof(id));
 
                 using (UnitOfWork unit = new UnitOfWork())
                 {
-
-                    unit.Positions.Remove(entity);
+                    var position = unit.Positions.FindById(id);
+                    unit.Positions.Remove(position);
                     unit.Save();
 
                 }
