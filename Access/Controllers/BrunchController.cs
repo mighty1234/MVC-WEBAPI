@@ -63,7 +63,7 @@ namespace Access.Controllers
             try
             {
                 service.Save(brunch);
-                return CreatedAtRoute("DefaultApi", new { id = brunch.Id }, brunch);
+                return CreatedAtRoute("DefaultApi", new { id = brunch.Id },new BrunchDto( brunch));
             }
             catch (Exception ex )
             {
@@ -116,7 +116,7 @@ namespace Access.Controllers
                 service.Delete(id);
                
 
-                return Ok(brunch);
+                return Ok( new BrunchDto(brunch));
             }
             catch (Exception ex)
             {

@@ -14,23 +14,23 @@ namespace Access.Controllers
 {
     public class ClientsController : ApiController
     {
-        ClientService service = new  ClientService();
+        ClientService service = new ClientService();
         // GET: api/Clients
         public IEnumerable<ClientDto> Get()
         {
 
             try
             {
-                return  service.GetAll().Select(x=>new ClientDto(x));              
+                return service.GetAll().Select(x => new ClientDto(x));
 
             }
             catch (Exception ex)
             {
 
-               throw ex ;
+                throw ex;
             }
-            
-         
+
+
         }
 
         // GET: api/Clients/5
@@ -39,18 +39,18 @@ namespace Access.Controllers
         {
             try
             {
-               Client client=  service.GetBuyId(id);
+                Client client = service.GetBuyId(id);
                 if (client == null)
                     return NotFound();
-                
-                return Ok( new ClientDto(client));
+
+                return Ok(new ClientDto(client));
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 throw ex;
             }
-            
+
         }
 
         // POST: api/Clients
@@ -60,13 +60,13 @@ namespace Access.Controllers
             try
             {
                 service.Save(client);
-                return CreatedAtRoute("DefaultApi", new { id = client.Id }, client);
+                return CreatedAtRoute("DefaultApi", new { id = client.Id }, new ClientDto(client));
 
             }
             catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
         }
 
@@ -84,7 +84,7 @@ namespace Access.Controllers
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                if (service.GetBuyId(id)==null)
+                if (service.GetBuyId(id) == null)
                 {
                     return NotFound();
                 }
@@ -102,17 +102,17 @@ namespace Access.Controllers
         {
             try
             {
-                Client client= service.GetBuyId(id);
-                if (client==null)
+                Client client = service.GetBuyId(id);
+                if (client == null)
                     return NotFound();
 
                 service.Delete(id);
-                return Ok(client);
+                return Ok(new ClientDto(client));
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
         }
     }

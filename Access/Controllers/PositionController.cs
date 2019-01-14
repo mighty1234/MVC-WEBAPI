@@ -12,75 +12,77 @@ using System.Web.Http.Description;
 
 namespace Access.Controllers
 {
-    public class GiftController : ApiController
+    public class PositionController : ApiController
     {
-        GiftsService service = new GiftsService();
-       // GET: api/Gift
-        public IEnumerable<GiftsDto> Get()
+        PositionService service = new PositionService();
+        // GET: api/Position
+        public IEnumerable<PositionDto> Get()
         {
-
             try
             {
-                return service.GetAll().Select(x => new GiftsDto(x));
+
+                return service.GetAll().Select(x => new PositionDto(x));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex ;
             }
             
         }
 
-        // GET: api/Gift/5
-        [ResponseType(typeof(GiftsDto))]
+        // GET: api/Position/5
+        [ResponseType(typeof(PositionDto))]
         public IHttpActionResult Get(int id)
         {
             try
             {
-              Gifts gift = service.GetBuyId(id);
-                if (gift == null)
+                var position = service.GetBuyId(id);
+                if (position == null)
                     return NotFound();
-              return  Ok(new GiftsDto(gift));
+
+                return Ok(new PositionDto(position));
             }
             catch (Exception ex )
             {
 
-                throw ex;
+                throw ex ;
             }
             
         }
 
-        // POST: api/Gift
-        [ResponseType(typeof(GiftsDto))]
-        public IHttpActionResult Post(Gifts gift)
+        // POST: api/Position
+        [ResponseType(typeof(PositionDto))]
+        public IHttpActionResult Post(Position position)
         {
             try
             {
-                service.Save(gift);
-                return CreatedAtRoute("DefaultApi", new { id = gift.Id },  new GiftsDto(gift));
+                service.Save(position);
+                return CreatedAtRoute("DefaultApi", new { id = position.Id }, new PositionDto(position));
             }
-            catch (Exception ex)
+            catch (Exception ex )
             {
+
                 throw ex ;
             }
         }
 
-        // PUT: api/Gift/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult Put(int id,Gifts gift)
+        // PUT: api/Position/5
+        [ResponseType(typeof(PositionDto))]
+        public IHttpActionResult Put(int id,Position position)
         {
             try
             {
-                if (id != gift.Id)
+                if (id != position.Id)
                 {
                     return BadRequest();
                 }
 
-                service.Update(gift);
+                service.Update(position);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (service.GetBuyId(id)==null)
+                if (service.GetBuyId(id) == null)
                 {
                     return NotFound();
                 }
@@ -91,21 +93,15 @@ namespace Access.Controllers
             }
 
             return StatusCode(HttpStatusCode.NoContent);
-        
+        }
 
-    }
-
-        // DELETE: api/Gift/5
-        [ResponseType(typeof(GiftsDto))]
-        public IHttpActionResult Delete(int id)
+        // DELETE: api/Position/5
+        public void Delete(int id)
         {
+
             try
             {
-                Gifts gift = service.GetBuyId(id);
-                if (gift == null)
-                    return NotFound();
                 service.Delete(id);
-                return Ok(new GiftsDto(gift));
             }
             catch (Exception ex )
             {

@@ -184,7 +184,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BrunchController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\GiftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -263,6 +268,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DTOLibrary\DTOLibrary.csproj">
+      <Project>{26657F67-B6CC-4503-BF0A-AC15F056E409}</Project>
+      <Name>DTOLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Models.csproj">
       <Project>{477d5f18-2a6f-402f-ae4c-50baececd4ee}</Project>
       <Name>Models</Name>

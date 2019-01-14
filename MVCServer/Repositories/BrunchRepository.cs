@@ -22,7 +22,7 @@ namespace MVCServer.Repositories
 
         public Brunch FindById(int id)
         {
-          return  _db.Where(x => x.Id == id).Include(x => x.Orders).First();
+          return  _db.Where(x => x.Id == id).Include(x => x.Orders).Include(x=>x.Staff).FirstOrDefault();
         }
 
         public IEnumerable<Brunch> GetAll()
