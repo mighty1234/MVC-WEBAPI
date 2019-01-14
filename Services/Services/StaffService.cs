@@ -34,12 +34,15 @@ namespace Services.Services
 
     public IEnumerable<Staff> GetAll()
     {
+            List<Staff> staffs = new List<Staff>();
             try
             {
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.Staff.GetAll();
+                    staffs = unit.Staff.GetAll().ToList() ;
+                    return staffs;
+
 
                 }
             }
@@ -52,6 +55,7 @@ namespace Services.Services
 
     public Staff GetBuyId(int id)
     {
+            Staff staff = new Staff();
             try
             {
                 if (id == default(int))
@@ -60,7 +64,8 @@ namespace Services.Services
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.Staff.FindById(id);
+                   staff=unit.Staff.FindById(id);
+                    return staff;
 
                 }
             }

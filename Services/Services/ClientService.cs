@@ -37,13 +37,15 @@ namespace Services.Services
 
         public IEnumerable<Client> GetAll()
         {
+            List<Client> clients = new List<Client>();
             try
             {
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.Clients.GetAll();
+                    clients= unit.Clients.GetAll().ToList();
 
+                    return clients;
                 }
             }
 
@@ -51,12 +53,13 @@ namespace Services.Services
             {
                 throw ex;
             }
-
+            
             
         }
 
         public Client GetBuyId(int id)
         {
+            Client client = new Client();
             try
             {
                 if(id==default(int))
@@ -65,7 +68,8 @@ namespace Services.Services
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.Clients.FindById(id);
+                    client= unit.Clients.FindById(id);
+                    return client;
 
                 }
             }
@@ -73,7 +77,7 @@ namespace Services.Services
             {
                 throw ex;
             }
-
+           ;
 
 
         }

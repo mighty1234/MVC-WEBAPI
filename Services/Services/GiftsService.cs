@@ -35,12 +35,14 @@ namespace Services.Services
 
         public IEnumerable<Gifts> GetAll()
         {
+            List<Gifts> gifts = new List<Gifts>();
             try
             {
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.Gifts.GetAll();
+                   gifts= unit.Gifts.GetAll().ToList();
+                    return gifts;
 
                 }
             }
@@ -49,6 +51,7 @@ namespace Services.Services
             {
                 throw ex;
             }
+           
         }
 
         public Gifts GetBuyId(int id)

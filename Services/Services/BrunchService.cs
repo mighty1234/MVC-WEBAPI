@@ -41,9 +41,8 @@ namespace Services.Services
             {
                 using (UnitOfWork unit = new UnitOfWork())
                 {
-
-                   x= unit.Brunches.GetAll();
-
+               
+                    return unit.Brunches.GetAll();
                 }
             }
 
@@ -51,28 +50,32 @@ namespace Services.Services
             {
                 throw ex;
             }
-            return x;
+        
 
         }
 
         public Brunch GetBuyId(int id)
         {
+            Brunch x = new Brunch();
             try
             {
-                if (id == default(int))
+               
+                    if (id == default(int))
                     throw new NullReferenceException(nameof(id));
 
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.Brunches.FindById(id);
+                   return    unit.Brunches.FindById(id);                  
 
                 }
+              
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+         
         }
 
         public void Save(Brunch entity)

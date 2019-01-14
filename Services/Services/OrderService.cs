@@ -56,6 +56,7 @@ namespace Services.Services
 
         public Orders GetBuyId(int id)
         {
+            Orders order = new Orders();
             try
             {
                 if (id == default(int))
@@ -64,7 +65,8 @@ namespace Services.Services
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.Orders.FindById(id);
+                    order= unit.Orders.FindById(id);
+                    return order;
 
                 }
             }

@@ -37,12 +37,14 @@ namespace Services.Services
 
     public IEnumerable<Position> GetAll()
         {
-                try
+            List<Position> positions = new List<Position>();
+            try
                 {
                     using (UnitOfWork unit = new UnitOfWork())
                     {
 
-                        return unit.Positions.GetAll();
+                       positions= unit.Positions.GetAll().ToList();
+                    return positions;
 
                     }
                 }
@@ -55,6 +57,7 @@ namespace Services.Services
 
         public Position GetBuyId(int id)
         {
+            Position position = new Position();
             try
             {
                 if (id == default(int))
@@ -63,7 +66,8 @@ namespace Services.Services
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    return unit.Positions.FindById(id);
+                    position = unit.Positions.FindById(id);
+                    return position;
 
                 }
             }
