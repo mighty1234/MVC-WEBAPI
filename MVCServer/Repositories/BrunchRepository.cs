@@ -8,10 +8,17 @@ namespace MVCServer.Repositories
 {
     public class BrunchRepository : IRepository<Brunch>
     {
-       private  DbSet<Brunch> _db;
+
+         
+          
+        
+        private  DbSet<Brunch> _db;
+       private DbContext context;
         public BrunchRepository(MVCEntities context)
         {
            this._db = context.Brunch;
+        this.context = context;
+
         }
 
 
@@ -24,6 +31,7 @@ namespace MVCServer.Repositories
         {
           return  _db.Where(x => x.Id == id).Include(x => x.Orders).Include(x=>x.Staff).FirstOrDefault();
         }
+       
 
         public IEnumerable<Brunch> GetAll()
         {
@@ -35,6 +43,21 @@ namespace MVCServer.Repositories
             _db.Remove(item);
         }
 
+        public void Update(Brunch item)
+        {
+           _db.Attach(item);
+            var entry =  this.context.Entry(item);
+            entry.State = EntityState.Modified;
+
+
+            //var entity = FindById(item.Id);
+            //_db.Attach(entity);
+            //var entry = context.Entry(item);
+            //entry.State = EntityState.Modified;
+
+            
+        }
+    
        
     }
 }

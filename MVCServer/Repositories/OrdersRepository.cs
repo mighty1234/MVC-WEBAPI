@@ -8,10 +8,13 @@ namespace MVCServer.Repositories
 {
     public class OrdersRepository : IRepository<Orders>
     {
+       
+        private DbContext context;
         private DbSet<Orders> _db;
         public OrdersRepository(MVCEntities context)
         {
             this._db = context.Orders;
+            this.context = context;
         }
         public void Add(Orders item)
         {
@@ -34,6 +37,12 @@ namespace MVCServer.Repositories
         {
                 _db.Remove(item);
         }
-       
+
+        public void Update(Orders item)
+        {
+            _db.Attach(item);
+            var entry = context.Entry(item);
+            entry.State = EntityState.Modified;
+        }
     }
 }

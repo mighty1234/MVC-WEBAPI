@@ -114,7 +114,7 @@ namespace Services.Services
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.Clients.Add(entity);
+                    unit.Clients.Update(entity);
                     unit.Save();
 
                 }

@@ -103,7 +103,7 @@ namespace Services.Services
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.Gifts.Add(entity);
+                    unit.Gifts.Update(entity);
                     unit.Save();
 
                 }

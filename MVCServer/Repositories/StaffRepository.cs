@@ -8,10 +8,14 @@ namespace MVCServer.Repositories
 {
     public class StaffRepository : IRepository<Staff>
     {
+        
+        private DbContext context;
+
         private DbSet<Staff> _db;
         public StaffRepository(MVCEntities context)
         {
             this._db = context.Staff;
+            this.context = context;
         }
         public void Add(Staff item)
         {
@@ -36,6 +40,13 @@ namespace MVCServer.Repositories
         public void Update(Staff item, DbContext context)
         {
             context.Entry(item).State = EntityState.Modified;
+        }
+
+        public void Update(Staff item)
+        {
+            _db.Attach(item);
+            var entry = context.Entry(item);
+            entry.State = EntityState.Modified;
         }
     }
 }

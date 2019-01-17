@@ -107,7 +107,7 @@ namespace Services.Services
                 using (UnitOfWork unit = new UnitOfWork())
                 {
 
-                    unit.Brunches.Add(entity);
+                    unit.Brunches.Update(entity);
                     unit.Save();
 
                 }

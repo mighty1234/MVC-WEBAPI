@@ -39,11 +39,16 @@ namespace Access.Controllers
         {
             try
             {
-                Client client = service.GetBuyId(id);
-                if (client == null)
-                    return NotFound();
+                if (id != 0)
+                {
+                    Client client = service.GetBuyId(id);
+                    if (client == null)
+                        return NotFound();
 
-                return Ok(new ClientDto(client));
+                    return Ok(new ClientDto(client));
+                }
+                else
+                    return null;
             }
             catch (Exception ex)
             {

@@ -14,8 +14,9 @@ namespace MVCServer.Repositories
         TEntity FindById(int id);
         IEnumerable<TEntity> GetAll();    
         void Remove(TEntity item);
-       
-     
+        void Update (TEntity item);
+
+
 
     }
 
