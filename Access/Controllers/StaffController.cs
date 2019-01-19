@@ -59,8 +59,8 @@ namespace Access.Controllers
         {
             try
             {
-                service.Save(staff);
-                return CreatedAtRoute("DefaultApi", new { id = staff.Id },  new StaffDto(staff));
+                 service.Save(staff);
+                 return CreatedAtRoute("DefaultApi", new { id = staff.Id },  new StaffDto(staff));             
             }
           
             catch (Exception ex )
